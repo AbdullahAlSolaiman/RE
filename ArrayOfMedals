@@ -1,0 +1,143 @@
+#include <iostream>
+using namespace std;
+//global scope
+int medals[4][3];
+
+
+void ReadArray()
+{
+
+
+	for (int i = 0; i < 4; i++)
+	{
+		{
+			cout << "enter Gold for country: " << i + 1 << endl;
+			cin >> medals[i][0];
+
+
+			cout << "enter Silver for country: " << i + 1 << endl;
+			cin >> medals[i][1];
+
+
+			cout << "enter Bronze for country: " << i + 1 << endl;
+			cin >> medals[i][2];
+		}
+		cout << endl<<endl;
+	}
+
+
+}
+
+int ReturnMedalsWon(int countryNum)
+
+{
+
+	int totalMedalsWon = 0;
+	for (int i = 0; i < 3; i++)
+	{
+
+		totalMedalsWon += medals[countryNum - 1][i];
+	}
+
+
+	return totalMedalsWon;
+
+
+}
+
+int LargestWon()
+{
+	
+	int sum = 0;
+	int largest = 0;
+	int countryNumber=0;
+	for (int i = 0; i < 4; i++)	//countries
+	{
+		sum = medals[i][0] + medals[i][1] + medals[i][2];
+		
+		if (sum > largest)      // getting which has the largest
+		{
+			largest = sum;
+			countryNumber = i + 1;
+		}
+	}
+
+	cout << "the country which has the largest number of medals was the country number : " << countryNumber << endl;
+	return largest; 
+}
+int SmallestWon()
+{
+
+	int sum = 0;
+	int smallest = std::numeric_limits<int>::max();;
+	int countryNumber = 0;
+	for (int i = 0; i < 4; i++)	//countries
+	{
+		sum = medals[i][0] + medals[i][1] + medals[i][2];
+
+		if (sum < smallest)      // getting which has the largest
+		{
+			smallest = sum;
+			countryNumber = i + 1;
+		}
+	}
+
+	cout << "the country which has the SMALLEST number of medals was the country number : " << countryNumber << endl;
+	return smallest;
+}
+
+int HighestGold()
+{
+	int countryNumber=0;
+	int goldest = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		int countryXgold = medals[i][0];
+
+			if (countryXgold > goldest)
+			{
+				goldest = countryXgold;
+				countryNumber = i + 1;
+			}
+	}
+	cout << "the country which has the Hieghst number of Gold medals was the country number : " << countryNumber << endl;
+
+
+	return goldest;
+}
+int ReturnBronzeMedalsWon(int countryNum)
+
+{
+	return medals[countryNum-1][2];
+
+}
+int main()
+{
+
+	cout << "Hey bitch,enter all the medals." << endl<< endl << endl;
+	ReadArray();
+	int countryNumb;
+	cout << "what country u want to know their medals? enter their number:" << endl;
+	cin >> countryNumb;
+
+
+	cout << "totals wons by this country is: " << ReturnMedalsWon(countryNumb) << endl<< endl<< endl;
+
+	int x = LargestWon();
+	cout << "And the Number of Medals they got was: " << x << endl<< endl<< endl;
+	int y = SmallestWon();
+	cout << "And the Number of Medals they got was: " << y << endl<< endl<< endl;
+
+	int z = HighestGold();
+	cout << "And the Number of Medals they got was: " << z << endl<< endl<< endl;
+
+
+	cout << "what country u want to know their ## BRONZE medals ##? enter their number:" << endl;
+	cin >> countryNumb;
+	cout << "totals $$ Bronze $$  by this country is: "<<ReturnBronzeMedalsWon(countryNumb)<<endl << endl << endl;
+	
+
+
+	return 0;
+}
+
